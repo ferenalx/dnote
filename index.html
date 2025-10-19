@@ -1,4 +1,3 @@
-// ...existing code...
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -6,6 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>死の手帳</title>
   <style>
+    *,*::before,*::after{box-sizing:border-box}
     :root{
       --card:#ffffff;
       --bg:#000000;
@@ -13,30 +13,33 @@
       --accent:#000000;
       --border:rgba(0,0,0,0.12);
     }
-    html,body{height:100%;margin:0;font-family:system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;}
-    body{background:var(--bg);color:var(--ink);display:flex;align-items:center;justify-content:center;padding:1.25rem;}
-    main{width:880px;max-width:100%;padding:1rem;background:var(--card);border-radius:8px;border:1px solid var(--border);box-shadow:none;}
-    table{width:100%;border-collapse:collapse;min-width:0;background:transparent;}
-    caption{caption-side:top;text-align:left;padding:0.4rem 0;font-weight:700;color:var(--accent);font-family:Georgia,serif;}
-    thead th{text-align:left;padding:0.6rem 0.8rem;color:var(--accent);border-bottom:2px solid var(--border);font-weight:700;font-family:Georgia,serif;}
-    tbody td{padding:0.6rem 0.8rem;border-bottom:1px dashed var(--border);vertical-align:top;font-size:0.97rem;color:var(--ink);}
-    tbody tr:hover td{background:rgba(0,0,0,0.04);}
-    .muted{color:rgba(0,0,0,0.6);font-size:0.92rem;}
+    html,body{height:100%;margin:0;font-family:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;background:var(--bg);color:var(--ink)}
+    body{display:flex;align-items:center;justify-content:center;padding:1.25rem;overflow-x:hidden}
+    main{width:100%;max-width:920px;padding:1rem;background:var(--card);border-radius:8px;border:1px solid var(--border)}
+    table{width:100%;border-collapse:collapse;background:transparent;table-layout:auto}
+    caption{caption-side:top;text-align:left;padding:0.4rem 0;font-weight:700;color:var(--accent);font-family:Georgia,serif}
+    thead th{text-align:left;padding:0.65rem 0.8rem;color:var(--accent);border-bottom:2px solid var(--border);font-weight:700;font-family:Georgia,serif}
+    tbody td{padding:0.6rem 0.8rem;border-bottom:1px dashed var(--border);vertical-align:top;font-size:0.97rem;color:var(--ink);word-break:break-word}
+    tbody tr:hover td{background:rgba(0,0,0,0.04)}
+    .muted{color:rgba(0,0,0,0.6);font-size:0.92rem}
+    @media (max-width:880px){
+      main{padding:0.9rem}
+      thead th{padding:0.55rem 0.6rem}
+    }
     @media (max-width:720px){
-      main{padding:0.75rem;}
-      table, thead, tbody, th, td, tr{display:block;}
-      thead{display:none;}
-      tbody tr{margin:0 0 0.9rem;padding:0.6rem;background:var(--card);border-radius:8px;}
-      tbody td{display:flex;justify-content:space-between;align-items:flex-start;padding:0.35rem 0;border-bottom:none;font-size:0.95rem;line-height:1.25;}
-      tbody td::before{content:attr(data-label);font-weight:700;color:var(--accent);margin-right:0.6rem;white-space:nowrap;flex:0 0 auto;}
-      body,main,table,tbody tr{width:100%;box-sizing:border-box;overflow-x:visible;}
+      table,thead,tbody,th,td,tr{display:block}
+      thead{display:none}
+      tbody tr{margin:0 0 0.9rem;padding:0.6rem;background:var(--card);border-radius:8px}
+      tbody td{display:flex;justify-content:space-between;align-items:flex-start;padding:0.35rem 0;border-bottom:none;font-size:0.95rem;line-height:1.25}
+      tbody td::before{content:attr(data-label);font-weight:700;color:var(--accent);margin-right:0.6rem;white-space:nowrap;flex:0 0 auto}
+      tbody td:last-child{flex:1 1 60%;text-align:right}
+      tbody td:nth-last-child(2){flex:0 0 30%;text-align:right}
     }
   </style>
 </head>
 <body>
   <main>
     <table>
-      <caption>記録一覧</caption>
       <thead>
         <tr>
           <th style="width:48px">番号</th>
@@ -54,156 +57,8 @@
           <td data-label="役割" class="muted">先輩</td>
           <td data-label="メモ">口笛</td>
         </tr>
-        <tr>
-          <td data-label="番号">2</td>
-          <td data-label="名前">佐藤健</td>
-          <td data-label="日付" class="muted">2024年07月03日</td>
-          <td data-label="役割" class="muted">同僚</td>
-          <td data-label="メモ">コーヒー好き</td>
-        </tr>
-        <tr>
-          <td data-label="番号">3</td>
-          <td data-label="名前">高橋美咲</td>
-          <td data-label="日付" class="muted">2025年01月18日</td>
-          <td data-label="役割" class="muted">アルバイト</td>
-          <td data-label="メモ">猫アレルギー</td>
-        </tr>
-        <tr>
-          <td data-label="番号">4</td>
-          <td data-label="名前">中村翔</td>
-          <td data-label="日付" class="muted">2023年12月05日</td>
-          <td data-label="役割" class="muted">友人</td>
-          <td data-label="メモ">地下鉄マニア</td>
-        </tr>
-        <tr>
-          <td data-label="番号">5</td>
-          <td data-label="名前">山田花子</td>
-          <td data-label="日付" class="muted">2025年05月22日</td>
-          <td data-label="役割" class="muted">先輩</td>
-          <td data-label="メモ">読書家</td>
-        </tr>
-        <tr>
-          <td data-label="番号">6</td>
-          <td data-label="名前">伊藤誠</td>
-          <td data-label="日付" class="muted">2024年11月09日</td>
-          <td data-label="役割" class="muted">顧客</td>
-          <td data-label="メモ">折りたたみ傘常備</td>
-        </tr>
-        <tr>
-          <td data-label="番号">7</td>
-          <td data-label="名前">渡辺翔太</td>
-          <td data-label="日付" class="muted">2025年08月30日</td>
-          <td data-label="役割" class="muted">後輩</td>
-          <td data-label="メモ">ギター練習中</td>
-        </tr>
       </tbody>
     </table>
   </main>
 </body>
 </html>
-// ...existing code...
-```// filepath: /workspaces/dnote/index.html
-// ...existing code...
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>死の手帳</title>
-  <style>
-    :root{
-      --card:#ffffff;
-      --bg:#000000;
-      --ink:#000000;
-      --accent:#000000;
-      --border:rgba(0,0,0,0.12);
-    }
-    html,body{height:100%;margin:0;font-family:system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;}
-    body{background:var(--bg);color:var(--ink);display:flex;align-items:center;justify-content:center;padding:1.25rem;}
-    main{width:880px;max-width:100%;padding:1rem;background:var(--card);border-radius:8px;border:1px solid var(--border);box-shadow:none;}
-    table{width:100%;border-collapse:collapse;min-width:0;background:transparent;}
-    caption{caption-side:top;text-align:left;padding:0.4rem 0;font-weight:700;color:var(--accent);font-family:Georgia,serif;}
-    thead th{text-align:left;padding:0.6rem 0.8rem;color:var(--accent);border-bottom:2px solid var(--border);font-weight:700;font-family:Georgia,serif;}
-    tbody td{padding:0.6rem 0.8rem;border-bottom:1px dashed var(--border);vertical-align:top;font-size:0.97rem;color:var(--ink);}
-    tbody tr:hover td{background:rgba(0,0,0,0.04);}
-    .muted{color:rgba(0,0,0,0.6);font-size:0.92rem;}
-    @media (max-width:720px){
-      main{padding:0.75rem;}
-      table, thead, tbody, th, td, tr{display:block;}
-      thead{display:none;}
-      tbody tr{margin:0 0 0.9rem;padding:0.6rem;background:var(--card);border-radius:8px;}
-      tbody td{display:flex;justify-content:space-between;align-items:flex-start;padding:0.35rem 0;border-bottom:none;font-size:0.95rem;line-height:1.25;}
-      tbody td::before{content:attr(data-label);font-weight:700;color:var(--accent);margin-right:0.6rem;white-space:nowrap;flex:0 0 auto;}
-      body,main,table,tbody tr{width:100%;box-sizing:border-box;overflow-x:visible;}
-    }
-  </style>
-</head>
-<body>
-  <main>
-    <table>
-      <caption>記録一覧</caption>
-      <thead>
-        <tr>
-          <th style="width:48px">番号</th>
-          <th style="width:200px">名前</th>
-          <th style="width:140px">日付</th>
-          <th style="width:160px">役割</th>
-          <th>メモ</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td data-label="番号">1</td>
-          <td data-label="名前">ラケシュ</td>
-          <td data-label="日付" class="muted">2025年10月11日</td>
-          <td data-label="役割" class="muted">先輩</td>
-          <td data-label="メモ">口笛</td>
-        </tr>
-        <tr>
-          <td data-label="番号">2</td>
-          <td data-label="名前">佐藤健</td>
-          <td data-label="日付" class="muted">2024年07月03日</td>
-          <td data-label="役割" class="muted">同僚</td>
-          <td data-label="メモ">コーヒー好き</td>
-        </tr>
-        <tr>
-          <td data-label="番号">3</td>
-          <td data-label="名前">高橋美咲</td>
-          <td data-label="日付" class="muted">2025年01月18日</td>
-          <td data-label="役割" class="muted">アルバイト</td>
-          <td data-label="メモ">猫アレルギー</td>
-        </tr>
-        <tr>
-          <td data-label="番号">4</td>
-          <td data-label="名前">中村翔</td>
-          <td data-label="日付" class="muted">2023年12月05日</td>
-          <td data-label="役割" class="muted">友人</td>
-          <td data-label="メモ">地下鉄マニア</td>
-        </tr>
-        <tr>
-          <td data-label="番号">5</td>
-          <td data-label="名前">山田花子</td>
-          <td data-label="日付" class="muted">2025年05月22日</td>
-          <td data-label="役割" class="muted">先輩</td>
-          <td data-label="メモ">読書家</td>
-        </tr>
-        <tr>
-          <td data-label="番号">6</td>
-          <td data-label="名前">伊藤誠</td>
-          <td data-label="日付" class="muted">2024年11月09日</td>
-          <td data-label="役割" class="muted">顧客</td>
-          <td data-label="メモ">折りたたみ傘常備</td>
-        </tr>
-        <tr>
-          <td data-label="番号">7</td>
-          <td data-label="名前">渡辺翔太</td>
-          <td data-label="日付" class="muted">2025年08月30日</td>
-          <td data-label="役割" class="muted">後輩</td>
-          <td data-label="メモ">ギター練習中</td>
-        </tr>
-      </tbody>
-    </table>
-  </main>
-</body>
-</html>
-// ...existing code...
